@@ -45,5 +45,7 @@ class apiHub:
                     if not data: break
 
                     # If any information was actually recieved, re-transmit.
-                    if len(data) > 0: self.conn.sendall(data)
+                    if len(data) > 0:
+                        while True: self.conn\
+                                        .sendall(data)
 
