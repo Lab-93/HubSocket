@@ -50,3 +50,8 @@ class SocketServer:
                                                    target=self.broadcast_loop,
                                                    args=(data,) ).start()
 
+
+    def broadcast_loop(self, data):
+        while True:
+            self.conn.sendall(data)
+            if data != self.data: break
