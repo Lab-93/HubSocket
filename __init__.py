@@ -40,13 +40,13 @@ class SocketServer:
                 while True:
 
                     # Recieve incoming transmission in chunks of 10-24 bytes.
-                    data = self.conn.recv(1024)
+                    self.data = self.conn.recv(1024); data = self.data
 
                     # Break the loop if the client is done sending.
-                    if not data: break
+                    if not self.data: break
 
                     # If any information was actually recieved, re-transmit.
-                    if len(data) > 0:
-                        while True: self.conn\
-                                        .sendall(data)
+                    if len(self.data) > 0: Thread( daemon=True,
+                                                   target=self.broadcast_loop,
+                                                   args=(data,) ).start()
 
