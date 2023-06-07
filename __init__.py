@@ -9,9 +9,10 @@ from socket import socket, AF_INET, SOCK_STREAM
 from socket import error as SocketError
 from json import loads
 from time import sleep
+from threading import Thread
 
 
-class apiHub:
+class SocketServer:
     """
     The API Hub provides a centralized socket server for passing information
     from any python processes running in the background to any front-end service
